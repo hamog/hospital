@@ -46,6 +46,12 @@
                         <p>نقش پزشک ها</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.doctors.index')  }}" class="nav-link">
+                        <i class="nav-icon bi bi-speedometer"></i>
+                        <p>دکتر ها</p>
+                    </a>
+                </li>
             </ul>
             <!--end::Sidebar Menu-->
         </nav>
