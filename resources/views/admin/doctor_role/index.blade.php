@@ -1,52 +1,52 @@
 @extends('layouts.master')
 
-@section('title', 'لیست تخصص ها')
+@section('title', 'لیست نقش پزشک ها')
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header">
-                    <h3 class="card-title">لیست تخصص ها</h3>
-                    <a href="{{ route('admin.specialities.create') }}" class="btn btn-primary float-end">ثبت تخصص جدید</a>
+                    <h3 class="card-title">لیست نقش پزشک ها</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+
+                    @if($sumQuota != 100)
+                        <div class="alert alert-danger" role="alert">
+                            <strong>مجموع سهم پزشکان باید 100 درصد باشد!</strong>
+                        </div>
+                    @endif
+
                     <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>عنوان تخصص</th>
-                            <th>وضعیت</th>
+                            <th>عنوان نقش پزشک</th>
+                            <th>درصد سهم</th>
+                            <th>الزامی بودن</th>
                             <th>تاریخ ثبت</th>
                             <th>عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($specialities as $speciality)
+                            @foreach($doctorRoles as $doctorRole)
                                 <tr class="align-middle">
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $speciality->title }}</td>
+                                    <td>{{ $doctorRole->title }}</td>
+                                    <td>{{ $doctorRole->quota }}</td>
                                     <td>
-                                        @if($speciality->status)
+                                        @if($doctorRole->required)
                                             <span class="badge text-bg-success">فعال</span>
                                         @else
                                             <span class="badge text-bg-danger">غیرفعال</span>
                                         @endif
                                     </td>
-                                    <td>{{ verta($speciality->created_at)->format('Y/m/d H:i') }}</td>
+                                    <td>{{ verta($doctorRole->created_at)->format('Y/m/d H:i') }}</td>
                                     <td>
-                                        <a class="btn btn-warning btn-sm" href="{{ route('admin.specialities.edit', $speciality->id) }}" role="button">
+                                        <a class="btn btn-warning btn-sm" href="{{ route('admin.doctor-roles.edit', $doctorRole->id) }}" role="button">
                                             ویرایش
                                         </a>
-                                        <button class="btn btn-danger btn-sm" type="button" onclick="confirmDelete('delete-{{ $speciality->id }}')">
-                                            حذف
-                                        </button>
-                                        <form action="{{ route('admin.specialities.destroy', $speciality->id) }}" method="post" id="delete-{{ $speciality->id }}">
-                                            @csrf
-                                            @method('delete')
-
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -57,7 +57,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
-                    {{ $specialities->links() }}
+                    {{ $doctorRoles->links() }}
                 </div>
             </div>
             <!-- /.card -->

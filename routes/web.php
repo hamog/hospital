@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DoctorRoleController;
 use App\Http\Controllers\Admin\SpecialityController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     //dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     //specialities
-    Route::resource('specialities', SpecialityController::class);
+    Route::resource('specialities', SpecialityController::class)->except('show');
+    //doctor_roles
+    Route::resource('doctor-roles', DoctorRoleController::class)->only(['index', 'edit', 'update']);
 });
 

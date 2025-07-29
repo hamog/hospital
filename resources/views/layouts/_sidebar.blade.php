@@ -40,6 +40,12 @@
                         <p>تخحصص ها</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.doctor-roles.index')  }}" class="nav-link">
+                        <i class="nav-icon bi bi-speedometer"></i>
+                        <p>نقش پزشک ها</p>
+                    </a>
+                </li>
             </ul>
             <!--end::Sidebar Menu-->
         </nav>
