@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'لیست دسته بندی ها')
+@section('title', 'لیست تخصص ها')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('admin.categories.index') }}">لیست دسته بندی ها</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.specialities.index') }}">لیست تخصص ها</a></li>
 @endsection
 
 @section('content')
@@ -11,17 +11,17 @@
         <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-header">
-                    <h3 class="card-title">ثبت دسته بندی</h3>
+                    <h3 class="card-title">ثبت تخصص</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ route('admin.categories.store') }}" method="post">
+                    <form action="{{ route('admin.specialities.store') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col">
                                <div class="form-group">
-                                   <label for="name">نام دسته بندی</label>
-                                   <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
+                                   <label for="title">عنوان تخصص</label>
+                                   <input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}" required>
                                </div>
                             </div>
                             <div class="col">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col text-center">
-                                <button type="submit" class="btn btn-primary">ثبت دسته بندی</button>
+                                <button type="submit" class="btn btn-primary">ثبت تخصص</button>
                             </div>
                         </div>
 

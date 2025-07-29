@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SpecialityController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -17,5 +18,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     //dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    //specialities
+    Route::resource('specialities', SpecialityController::class);
 });
 

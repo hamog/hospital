@@ -3,63 +3,52 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\SpecialityStoreRequest;
+use App\Http\Requests\Admin\SpecialityUpdateRequest;
+use App\Models\Speciality;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SpecialityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): View
     {
-        //
+        $specialities = Speciality::query()->latest('id')->paginate();
+
+        return view('admin.speciality.index', compact('specialities'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.speciality.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(SpecialityStoreRequest $request): RedirectResponse
     {
-        //
+        Speciality::query()->create($request->validated());
+
+        return redirect()->route('admin.specialities.index')
+            ->with('success', 'دسته بندی با موفقیت ثبت شد.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Speciality $speciality): View
     {
-        //
+        return view('admin.speciality.edit', compact('speciality'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(SpecialityUpdateRequest $request, Speciality $speciality): RedirectResponse
     {
-        //
+        $speciality->update($request->validated());
+
+        return redirect()->route('admin.specialities.index')
+            ->with('success', 'دسته بندی با موفقیت به روزرسانی شد.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Speciality $speciality): RedirectResponse
     {
-        //
-    }
+        $speciality->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('admin.specialities.index')
+            ->with('success', 'دسته بندی با موفقیت حذف شد.');
     }
 }

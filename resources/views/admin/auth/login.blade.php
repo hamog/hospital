@@ -60,7 +60,7 @@
             <form action="{{ route('login') }}" method="post">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email" required autofocus />
+                    <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control" placeholder="Mobile" required autofocus />
                     <div class="input-group-text"><span class="bi bi-envelope"></span></div>
                 </div>
                 <div class="input-group mb-3">

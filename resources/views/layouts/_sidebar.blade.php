@@ -35,15 +35,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.categories.index')  }}" class="nav-link">
+                    <a href="{{ route('admin.specialities.index')  }}" class="nav-link">
                         <i class="nav-icon bi bi-speedometer"></i>
-                        <p>دسته بندی ها</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.posts.index')  }}" class="nav-link">
-                        <i class="nav-icon bi bi-book"></i>
-                        <p>اخبار</p>
+                        <p>تخحصص ها</p>
                     </a>
                 </li>
             </ul>
