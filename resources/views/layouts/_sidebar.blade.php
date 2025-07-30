@@ -36,20 +36,26 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.specialities.index')  }}" class="nav-link">
-                        <i class="nav-icon bi bi-speedometer"></i>
+                        <i class="nav-icon bi bi-layers-half"></i>
                         <p>تخحصص ها</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.doctor-roles.index')  }}" class="nav-link">
-                        <i class="nav-icon bi bi-speedometer"></i>
+                        <i class="nav-icon bi bi-boxes"></i>
                         <p>نقش پزشک ها</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.doctors.index')  }}" class="nav-link">
-                        <i class="nav-icon bi bi-speedometer"></i>
+                        <i class="nav-icon bi bi-lungs"></i>
                         <p>دکتر ها</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.insurances.index')  }}" class="nav-link">
+                        <i class="nav-icon bi bi-heart"></i>
+                        <p>بیمه ها</p>
                     </a>
                 </li>
             </ul>
