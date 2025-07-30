@@ -15,19 +15,77 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ route('admin.doctors.update', $speciality->id) }}" method="post">
+                    <form action="{{ route('admin.doctors.update', $doctor->id) }}" method="post">
                         @csrf
-                        @method('patch')
+                        @method('PATCH')
                         <div class="row">
                             <div class="col">
-                               <div class="form-group">
-                                   <label for="title">عنوان دکتر</label>
-                                   <input type="text" id="title" name="title" class="form-control" value="{{ $speciality->title }}" required>
-                               </div>
+                                <div class="form-group">
+                                    <label for="name" class="control-label">نام و نام خانوادگی <span class="text-danger">&starf;</span></label>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="نام و نام خانوادگی را اینجا وارد کنید" value="{{ old('name', $doctor->name) }}" required autofocus>
+                                </div>
                             </div>
                             <div class="col">
+                                <div class="form-group">
+                                    <label for="speciality_id">تخصص</label>
+                                    <select name="speciality_id" id="speciality_id" class="form-control" required>
+                                        <option value="" class="text-muted">-- یک تخصص را انتخاب کنید --</option>
+                                        @foreach($specialities as $speciality)
+                                            <option value="{{ $speciality->id }}" @selected(old('speciality_id', $doctor->speciality_id) == $speciality->id)>{{ $speciality->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="mobile" class="control-label">شماره موبایل <span class="text-danger">&starf;</span></label>
+                                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="شماره موبایل را اینجا وارد کنید" value="{{ old('mobile', $doctor->mobile) }}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="national_code" class="control-label">کد ملی</label>
+                                    <input type="text" class="form-control" name="national_code" id="national_code" placeholder="کد ملی را اینجا وارد کنید" value="{{ old('national_code', $doctor->national_code) }}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="medical_number" class="control-label">کد نظام پزشکی</label>
+                                    <input type="text" class="form-control" name="medical_number" id="medical_number" placeholder="کد نظام پزشکی را اینجا وارد کنید" value="{{ old('medical_number', $doctor->medical_number) }}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="password"  class="control-label">کلمه عبور</label>
+                                    <input class="form-control" id="password" placeholder="کلمه عبور را اینجا وارد کنید" name="password" type="password">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="password_confirmation"  class="control-label">تکرار کلمه عبور</label>
+                                    <input class="form-control" id="password_confirmation" placeholder="تکرار کلمه عبور را اینجا وارد کنید" name="password_confirmation" type="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="doctor_roles" class="control-label">نقش پزشک</label>
+                                    <span class="text-danger">&starf;</span>
+                                    <select class="form-control" name="doctor_roles[]" id="doctor_roles" required multiple>
+                                        @foreach($doctorRoles as $doctorRole)
+                                            <option value="{{ $doctorRole->id }}" @selected(in_array($doctorRole->id, old('doctor_roles', $doctor->roles->pluck('id')->toArray())))>{{ $doctorRole->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 <div class="form-check pt-3">
-                                    <input class="form-check-input" name="status" type="checkbox" value="1" id="status" @checked($speciality->status)>
+                                    <input class="form-check-input" name="status" type="checkbox" value="1" id="status" @checked(old('status', $doctor->status))>
                                     <label class="form-check-label" for="status">
                                         فعال
                                     </label>
@@ -36,7 +94,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col text-center">
-                                <button type="submit" class="btn btn-warning">ویرایش دکتر</button>
+                                <button type="submit" class="btn btn-warning">به روزرسانی</button>
                             </div>
                         </div>
 

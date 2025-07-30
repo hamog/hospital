@@ -11,7 +11,7 @@ class DoctorStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,22 @@ class DoctorStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:100',
+            'speciality_id' => 'bail|required|integer|exists:specialities,id',
+            'national_code' => 'nullable|string|max:100',
+            'medical_number' => 'nullable|string|max:100',
+            'mobile' => 'required|digits:11|unique:doctors,mobile',
+            'password' => 'required|string|min:6|confirmed',
+            'status' => 'boolean',
+            'doctor_roles' => 'required|array',
+            'doctor_roles.*' => 'required|integer|exists:doctor_roles,id',
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'status' => $this->boolean('status'),
+        ]);
     }
 }

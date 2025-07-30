@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Speciality::class)->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->string('national_code');
-            $table->string('medical_number');
+            $table->string('national_code')->nullable();
+            $table->string('medical_number')->nullable();
             $table->string('mobile')->unique();
             $table->string('password');
             $table->boolean('status')->default(true);
