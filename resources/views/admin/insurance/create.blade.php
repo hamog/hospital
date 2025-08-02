@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-check pt-3">
-                                    <input class="form-check-input" name="status" type="checkbox" value="1" id="status" @checked(old('status'))>
+                                    <input class="form-check-input" name="status" type="checkbox" value="1" id="status" @checked(old('status', 1))>
                                     <label class="form-check-label" for="status">
                                         فعال
                                     </label>

@@ -2,5 +2,5 @@
 
 return [
     'basic' => 'پایه',
-    'supplementary' => 'کمیلیت'
+    'supplementary' => 'تکمیلی'
 ];

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Insurance extends Model
 {
     protected $fillable = [
-        'name', 'type', 'discount', 'status'
+        'name',
+        'type',
+        'discount',
+        'status'
     ];
 }
