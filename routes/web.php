@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\DoctorRoleController;
 use App\Http\Controllers\Admin\InsuranceController;
+use App\Http\Controllers\Admin\OperationController;
 use App\Http\Controllers\Admin\SpecialityController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('doctors', DoctorController::class);
     //insurances
     Route::resource('insurances', InsuranceController::class)->except('show');
+    //operations
+    Route::resource('operations', OperationController::class)->except('show');
 });
 

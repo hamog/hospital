@@ -58,6 +58,12 @@
                         <p>بیمه ها</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.operations.index')  }}" class="nav-link">
+                        <i class="nav-icon bi bi-bandaid"></i>
+                        <p>عمل ها</p>
+                    </a>
+                </li>
             </ul>
             <!--end::Sidebar Menu-->
         </nav>
