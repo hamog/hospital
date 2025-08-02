@@ -3,9 +3,9 @@
 @section('title', 'داشبورد')
 
 @section('content')
-    @if(session()->has('status'))
-        <div class="alert alert-success" role="alert">
-            <strong>{{ session('status') }}</strong>
+    @if($sumQuota != 100)
+        <div class="alert alert-warning" role="alert">
+            <a href="{{ route('admin.doctor-roles.index') }}"><strong>مجموع سهم پزشکان باید 100 درصد باشد! لطفا آن را ویرایش کنید.</strong></a>
         </div>
     @endif
 
